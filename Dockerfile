@@ -8,7 +8,7 @@ RUN npm install
 RUN npm run build
 
 # Build backend and bundle jar
-FROM gradle:jdk13 as gradle
+FROM gradle:jdk14 as gradle
 WORKDIR /usr/skillwill
 
 COPY backend/ ./
@@ -17,7 +17,7 @@ COPY --from=frontend /usr/frontend/public/* ./src/main/resources/static/
 RUN gradle clean build
 
 # Run
-FROM openjdk:13
+FROM openjdk:14
 ENV PORT $PORT
 ENV MONGOURI $MONGOURI
 ENV GOOGLEID $GOOGLEID
